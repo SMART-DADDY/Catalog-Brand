@@ -3,7 +3,8 @@
 namespace SmartDaddy\CatalogBrand\Filament\Resources\Brands\Pages;
 
 use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
 use SmartDaddy\CatalogBrand\Filament\Resources\Brands\BrandResource;
 
@@ -14,8 +15,9 @@ class EditBrand extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make(),
             DeleteAction::make(),
+            ForceDeleteAction::make(),
+            RestoreAction::make(),
         ];
     }
 

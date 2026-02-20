@@ -8,7 +8,9 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use SmartDaddy\CatalogBrand\Filament\Resources\Brands\Pages\CreateBrand;
 use SmartDaddy\CatalogBrand\Filament\Resources\Brands\Pages\EditBrand;
 use SmartDaddy\CatalogBrand\Filament\Resources\Brands\Pages\ListBrands;
@@ -79,5 +81,13 @@ class BrandResource extends Resource
             'view' => ViewBrand::route('/{record}'),
             'edit' => EditBrand::route('/{record}/edit'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
