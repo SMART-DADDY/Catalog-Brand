@@ -41,11 +41,9 @@ it('configures table columns, sorting and filters', function (): void {
 
     $columns = $table->getColumns();
 
-    expect(array_keys($columns))->toBe(['name', 'products_count', 'status', 'deleted_at', 'created_at', 'updated_at'])
+    expect(array_keys($columns))->toBe(['name', 'status', 'deleted_at', 'created_at', 'updated_at'])
         ->and($columns['name'])->toBeInstanceOf(TextColumn::class)
         ->and($columns['name']->isSearchable())->toBeTrue()
-        ->and($columns['products_count'])->toBeInstanceOf(TextColumn::class)
-        ->and($columns['products_count']->isSortable())->toBeTrue()
         ->and($columns['status'])->toBeInstanceOf(TextColumn::class)
         ->and($columns['status']->isBadge())->toBeTrue()
         ->and($columns['deleted_at']->isSortable())->toBeTrue()

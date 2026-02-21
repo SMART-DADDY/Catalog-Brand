@@ -29,21 +29,6 @@ php artisan migrate
 
 The package registers its migration through `CatalogBrandServiceProvider`.
 
-## Configuration
-
-Publish the package config and set your product model:
-
-```bash
-php artisan vendor:publish --tag=catalog-brand-config
-```
-
-```php
-// config/catalog-brand.php
-'models' => [
-    'product' => App\Models\Product::class,
-],
-```
-
 ## Filament integration
 
 Register package resources in your panel provider:

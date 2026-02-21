@@ -29,10 +29,6 @@ class BrandsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('products_count')
-                    ->label('Products')
-                    ->counts('products')
-                    ->sortable(),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('deleted_at')
