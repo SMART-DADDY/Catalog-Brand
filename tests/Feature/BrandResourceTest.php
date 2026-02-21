@@ -44,6 +44,6 @@ it('defines expected resource pages and removes soft delete scope for binding qu
 it('exposes expected navigation metadata', function (): void {
     expect(BrandResource::getNavigationIcon())->toBe(Heroicon::OutlinedTag)
         ->and(BrandResource::getActiveNavigationIcon())->toBe(Heroicon::Tag)
-        ->and(BrandResource::getNavigationGroup())->toBe('Inventory')
+        ->and(BrandResource::getNavigationGroup())->toBe('Catalog')
         ->and(BrandResource::getNavigationSort())->toBe(3);
 });
