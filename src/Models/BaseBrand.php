@@ -2,13 +2,13 @@
 
 namespace SmartDaddy\CatalogBrand\Models;
 
-use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InvalidArgumentException;
 use SmartDaddy\CatalogBrand\Enums\BrandStatus;
 
 abstract class BaseBrand extends Model
@@ -36,7 +36,18 @@ abstract class BaseBrand extends Model
 
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany($this->resolveProductModelClass());
+    }
+
+    protected function resolveProductModelClass(): string
+    {
+        $modelClass = config('catalog-brand.models.product');
+
+        if (! is_string($modelClass) || $modelClass === '') {
+            throw new InvalidArgumentException('Missing required config value: catalog-brand.models.product');
+        }
+
+        return $modelClass;
     }
 
     public function getTotalRevenueAttribute(): float
